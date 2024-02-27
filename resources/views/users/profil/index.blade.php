@@ -9,8 +9,6 @@
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="5%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,45 +45,20 @@
     </nav>
 
 
-    @section('content')
-        <div class="container">
-            <h1>Tous les Produits</h1>
-            <div class="row">
-                @foreach ($products as $product)
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img src="{{ $product->image }}" class="card-img-top" alt="Images">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $product->name }}</h5>
-                                <p class="card-text">{{ $product->type }}</p>
-                                <p class="card-text">Prix: {{ $product->prix }}</p>
-                                <p class="card-text">Quantité disponible: {{ $product->quantity }}</p>
 
-                                <form action="{{ route('orders.store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <div class="form-group">
-                                        <label for="quantity">Quantité :</label>
-                                        <select class="form-control" id="quantity" name="quantity">
-                                            @for ($i = 1; $i <= $product->quantity; $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Commander</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+    <div class="container">
+        <h1>Profil de l'utilisateur</h1>
+        <p><strong>Nom:</strong> {{ $user->name }}</p>
+        <p><strong>Email:</strong> {{ $user->email }}</p>
+        <p><strong>Mot de passe:</strong> {{ str_repeat('*', strlen($user->password)) }}</p>
+
+
 
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
+</body>
 
-    </html>
+</html>

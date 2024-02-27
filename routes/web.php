@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,5 @@ Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/ordersutilisateur', [OrderController::class, 'index'])->name('orders.index');
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+Route::get('/profil', [UserProfileController::class, 'show'])->name('profil.show');
