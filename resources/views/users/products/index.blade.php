@@ -22,25 +22,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/usersaccueil">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product">Produits</a>
+                    <a class="nav-link" href="/usersaccueil">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders">Panier</a>
+                    <a class="nav-link" href="/ordersutilisateur">Panier</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="/contactuser">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
-                </li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link btn btn-danger text-white">Déconnexion</button>
+                </form>
             </ul>
         </div>
     </nav>

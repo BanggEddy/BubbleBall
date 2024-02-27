@@ -22,25 +22,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/usersaccueil">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product">Produits</a>
+                    <a class="nav-link" href="/usersaccueil">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders">Panier</a>
+                    <a class="nav-link" href="/ordersutilisateur">Panier</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="/contactuser">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
-                </li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link btn btn-danger text-white">Déconnexion</button>
+                </form>
             </ul>
         </div>
     </nav>
@@ -59,8 +57,15 @@
                                 $totalPrice = 0;
                             @endphp
                             @foreach ($orders as $order)
-                                <p>Commande #{{ $order->id }} - Produit: {{ $order->product->name }} - Quantité:
+                                <p>
+                                    Commande #{{ $order->id }} - Produit: {{ $order->product->name }} - Quantité:
                                     {{ $order->quantity }} - Prix total: {{ $order->quantity * $order->product->prix }}
+                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
                                 </p>
                                 @php
                                     $totalPrice += $order->quantity * $order->product->prix;
@@ -75,6 +80,8 @@
     </div>
 
 
+
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

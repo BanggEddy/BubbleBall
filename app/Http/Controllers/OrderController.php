@@ -95,8 +95,16 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $product = $order->product;
+
+        $product->quantity += $order->quantity;
+        $product->save();
+
+        $order->delete();
+
+        return redirect()->route('orders.index')->with('success', 'Commande supprimée avec succès.');
     }
 }

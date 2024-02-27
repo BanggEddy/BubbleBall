@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('contact.index');
 });
+Route::get('/contactuser', function () {
+    return view('users.contact.index');
+});
 Route::get('/connexion', function () {
     return view('connexion');
 });
@@ -40,3 +44,5 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/ordersutilisateur', [OrderController::class, 'index'])->name('orders.index');
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
