@@ -10,28 +10,23 @@
 
 <body>
 
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="5%">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="10%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product">Produits</a>
+                    <a class="nav-link" href="#">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders">Panier</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="#">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -46,34 +41,27 @@
     </nav>
 
     <div class="container">
-        <h1>Vos commandes</h1>
-        @if ($orders->isEmpty())
-            <p>Aucune commande trouvée.</p>
-        @else
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-3">
+        <h1>Liste des Produits</h1>
+        <div class="row">
+            @foreach ($products as $product)
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{ asset('images/' . $product->image) }}" class="card-img-top" alt="Product Image">
                         <div class="card-body">
-                            <h5 class="card-title">Toutes vos commandes</h5>
-                            @php
-                                $totalPrice = 0;
-                            @endphp
-                            @foreach ($orders as $order)
-                                <p>Commande #{{ $order->id }} - Produit: {{ $order->product->name }} - Quantité:
-                                    {{ $order->quantity }} - Prix total: {{ $order->quantity * $order->product->prix }}
-                                </p>
-                                @php
-                                    $totalPrice += $order->quantity * $order->product->prix;
-                                @endphp
-                            @endforeach
-                            <p class="card-text">Prix total de toutes les commandes : {{ $totalPrice }}</p>
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">{{ $product->description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">Voir</a>
+                                </div>
+                                <small class="text-muted">{{ $product->price }} €</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @endforeach
+        </div>
     </div>
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

@@ -28,6 +28,9 @@
                     <a class="nav-link" href="/product">Produits</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/orders">Panier</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
             </ul>

@@ -39,3 +39,4 @@ Route::get('/usersaccueil', [UserProductController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/ordersutilisateur', [OrderController::class, 'index'])->name('orders.index');

@@ -15,7 +15,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        /** @var \App\Models\User|null $user */
+        $user = Auth::user();
+        if ($user) {
+            $orders = $user->orders()->with('product')->get();
+        } else {
+            $orders = collect();
+        }
+
+        return view('users.orders.index', compact('orders'));
     }
 
     /**
