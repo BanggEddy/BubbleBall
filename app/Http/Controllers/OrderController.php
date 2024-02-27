@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -35,13 +36,28 @@ class OrderController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        Order::create([
-            'user_id' => Auth::id(),
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
+        if (Auth::check()) {
+            $userId = Auth::id();
 
-        return redirect()->back()->with('success', 'Commande passée avec succès.');
+            $product = Product::findOrFail($request->product_id);
+
+            if ($request->quantity <= $product->quantity) {
+                $order = new Order();
+                $order->user_id = $userId;
+                $order->product_id = $request->product_id;
+                $order->quantity = $request->quantity;
+                $order->save();
+
+                $product->quantity -= $request->quantity;
+                $product->save();
+
+                return redirect()->back()->with('success', 'Commande passée avec succès.');
+            } else {
+                return redirect()->back()->with('error', 'La quantité commandée est supérieure à la quantité disponible.');
+            }
+        } else {
+            return redirect('/login')->with('error', 'Vous devez être connecté pour passer une commande.');
+        }
     }
 
     /**

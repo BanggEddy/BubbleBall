@@ -45,7 +45,7 @@
 
     @section('content')
         <div class="container">
-            <h1>Tous les Produits en tant que Utilisateur</h1>
+            <h1>Tous les Produits</h1>
             <div class="row">
                 @foreach ($products as $product)
                     <div class="col-md-4">
@@ -54,25 +54,29 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $product->name }}</h5>
                                 <p class="card-text">{{ $product->type }}</p>
+                                <p class="card-text">Prix: {{ $product->prix }}</p>
                                 <p class="card-text">Quantité disponible: {{ $product->quantity }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
 
-                                    <form action="{{ route('orders.store') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        <button type="submit" class="btn btn-primary btn-sm">Commander</button>
-                                    </form>
-                                    <small class="text-muted">{{ $product->prix }} €</small>
-
-                                </div>
+                                <form action="{{ route('orders.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <div class="form-group">
+                                        <label for="quantity">Quantité :</label>
+                                        <select class="form-control" id="quantity" name="quantity">
+                                            @for ($i = 1; $i <= $product->quantity; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Commander</button>
+                                </form>
                             </div>
-
                         </div>
                     </div>
                 @endforeach
             </div>
-
         </div>
+
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
