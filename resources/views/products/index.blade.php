@@ -12,7 +12,7 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="5%">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="2%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -51,14 +51,11 @@
                         <img src="{{ asset('images/' . $product->image) }}" class="card-img-top" alt="Product Image">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
-                            <!-- Ajout d'une section pour le prix -->
                             <p class="card-text">{{ $product->description }}</p>
-                            <!-- Affichage de la description -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="#" class="btn btn-sm btn-outline-secondary">Voir</a>
                                 </div>
-                                <!-- Affichage du prix -->
                                 <small class="text-muted">{{ $product->prix }} €</small>
                             </div>
                         </div>

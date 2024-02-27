@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\UserProductController;
+use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,14 +40,20 @@ Route::get('/inscription', function () {
 Route::get('/usersaccueil', function () {
     return view('users.products.index');
 });
+Route::get('/adminaccueil', function () {
+    return view('admin.products.index');
+});
+/*USERS */
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/usersaccueil', [UserProductController::class, 'index']);
-
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/ordersutilisateur', [OrderController::class, 'index'])->name('orders.index');
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
-Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-
 Route::get('/profil', [UserProfileController::class, 'show'])->name('profil.show');
+/*VERIF */
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+/*ADMIN */
+Route::get('/adminaccueil', [AdminProductController::class, 'index']);
+Route::get('/profiladmin', [AdminProfileController::class, 'show'])->name('profil.show');

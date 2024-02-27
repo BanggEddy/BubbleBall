@@ -9,10 +9,8 @@
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="5%">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" width="2%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,6 +33,9 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <a class="nav-link" href="/profil">
+                    Profil
+                </a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="nav-link btn btn-danger text-white">Déconnexion</button>
@@ -58,7 +59,7 @@
                             @endphp
                             @foreach ($orders as $order)
                                 <p>
-                                    Commande #{{ $order->id }} - Produit: {{ $order->product->name }} - Quantité:
+                                    Articles #{{ $order->id }} - Produit: {{ $order->product->name }} - Quantité:
                                     {{ $order->quantity }} - Prix total: {{ $order->quantity * $order->product->prix }}
                                 <form action="{{ route('orders.destroy', $order->id) }}" method="POST"
                                     style="display: inline;">

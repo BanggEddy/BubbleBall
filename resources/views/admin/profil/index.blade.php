@@ -9,8 +9,6 @@
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="2%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,22 +20,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/adminaccueil">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product">Produits</a>
+                    <a class="nav-link" href="/adminaccueil">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="/ordersadmin">Panier</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a>
-                </li>
+                <a class="nav-link" href="/profiladmin">
+                    Profil
+                </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link btn btn-danger text-white">Déconnexion</button>
+                </form>
             </ul>
         </div>
     </nav>
@@ -45,21 +44,18 @@
 
 
     <div class="container">
-        <div class="position-relative">
-            <section class="bg-black-opacity">
-                <img src="{{ asset('images/frontimg.png') }}" alt="Logo" class="img-fluid" style="width: 100%;" />
-            </section>
-            <h1>Contact</h1>
-        </div>
-    </div>
+        <h1>Profil de l'utilisateur</h1>
+        <p><strong>Nom:</strong> {{ $admin->name }}</p>
+        <p><strong>Email:</strong> {{ $admin->email }}</p>
+        <p><strong>Mot de passe:</strong> {{ str_repeat('*', strlen($admin->password)) }}</p>
 
 
 
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
