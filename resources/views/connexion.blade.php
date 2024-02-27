@@ -10,7 +10,6 @@
 
 <body>
 
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="5%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -43,30 +42,15 @@
     </nav>
 
     <div class="container">
-        <h1>Liste des Produits</h1>
-        <div class="row">
-            @foreach ($products as $product)
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="{{ asset('images/' . $product->image) }}" class="card-img-top" alt="Product Image">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $product->name }}</h5>
-                            <!-- Ajout d'une section pour le prix -->
-                            <p class="card-text">{{ $product->description }}</p>
-                            <!-- Affichage de la description -->
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-sm btn-outline-secondary">Voir</a>
-                                </div>
-                                <!-- Affichage du prix -->
-                                <small class="text-muted">{{ $product->prix }} €</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        <div class="position-relative">
+
+            <h1>Connexion</h1>
         </div>
     </div>
+
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

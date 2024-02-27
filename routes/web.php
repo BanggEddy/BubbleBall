@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,11 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('contact.index');
 });
-
-
+Route::get('/connexion', function () {
+    return view('connexion');
+});
+Route::get('/inscription', function () {
+    return view('inscription');
+});
 Route::get('/product', [ProductController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
