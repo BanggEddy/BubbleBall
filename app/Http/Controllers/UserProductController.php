@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Order;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
-class OrderController extends Controller
+class UserProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('users.products.index', compact('products'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -30,18 +29,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-        Order::create([
-            'user_id' => Auth::id(),
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
-
-        return redirect()->back()->with('success', 'Commande passée avec succès.');
+        //
     }
 
     /**

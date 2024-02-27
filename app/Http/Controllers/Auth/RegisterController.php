@@ -29,7 +29,6 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        // Authentification automatique après l'inscription
         auth()->login($user);
 
         return redirect('/connexion')->with('success', 'Votre compte a été créé avec succès.');

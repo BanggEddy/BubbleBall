@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserProductController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,5 +30,12 @@ Route::get('/connexion', function () {
 Route::get('/inscription', function () {
     return view('inscription');
 });
+Route::get('/usersaccueil', function () {
+    return view('users.products.index');
+});
 Route::get('/product', [ProductController::class, 'index']);
+Route::get('/usersaccueil', [UserProductController::class, 'index']);
+
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
