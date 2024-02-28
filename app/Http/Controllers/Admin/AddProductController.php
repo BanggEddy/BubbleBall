@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\HistoryAdmin;
+use Illuminate\Support\Facades\Auth;
 
 class AddProductController extends Controller
 {
@@ -37,6 +39,12 @@ class AddProductController extends Controller
         }
 
         $product->save();
+
+        HistoryAdmin::create([
+            'action' => 'Ajout de produit',
+            'product_id' => $product->id,
+            'user_id' => Auth::id(),
+        ]);
 
         return redirect()->route('admin.products.index')->with('success', 'Produit ajouté avec succès.');
     }

@@ -73,7 +73,7 @@ class AdminProductController extends Controller
         $product->save();
 
         HistoryAdmin::create([
-            'action' => 'add_quantity',
+            'action' => 'Ajout de quantité',
             'quantity' => $quantity,
             'product_id' => $product->id,
             'user_id' => auth()->id(),
@@ -94,7 +94,7 @@ class AdminProductController extends Controller
         $product->save();
 
         HistoryAdmin::create([
-            'action' => 'remove_quantity',
+            'action' => 'Suppression de quantité',
             'quantity' => $quantity,
             'product_id' => $product->id,
             'user_id' => auth()->id(),

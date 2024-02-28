@@ -29,17 +29,26 @@
                     <a class="nav-link" href="/ordersadmin">Panier</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <a class="nav-link" href="/profiladmin">
-                    Profil
-                </a>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="nav-link btn btn-danger text-white">Déconnexion</button>
-                </form>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.products.create') }}">Ajout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.products.delete') }}">Suppression</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profiladmin">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger text-white">Déconnexion</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
+
 
 
 

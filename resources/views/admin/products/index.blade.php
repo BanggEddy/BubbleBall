@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{ route('admin.products.create') }}">Ajout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.products.index') }}">Suppression</a>
+                    <a class="nav-link" href="{{ route('admin.products.delete') }}">Suppression</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profiladmin">Profil</a>
@@ -65,8 +65,9 @@
                                 <p class="card-text">Prix: {{ $product->prix }}</p>
                                 <p class="card-text">Quantité disponible: {{ $product->quantity }}</p>
 
-                                <form action="{{ route('admin.products.add_quantity', $product->id) }}" method="POST">
+                                <form action="{{ route('admin.products.addQuantity', $product->id) }}" method="POST">
                                     @csrf
+                                    @method('PUT')
                                     <div class="input-group">
                                         <input type="number" name="quantity" class="form-control"
                                             placeholder="Quantité à ajouter" min="1" required>
@@ -74,8 +75,9 @@
                                     </div>
                                 </form>
 
-                                <form action="{{ route('admin.products.remove_quantity', $product->id) }}" method="POST">
+                                <form action="{{ route('admin.products.removeQuantity', $product->id) }}" method="POST">
                                     @csrf
+                                    @method('PUT')
                                     <div class="input-group">
                                         <input type="number" name="quantity" class="form-control"
                                             placeholder="Quantité à retirer" min="1" required>

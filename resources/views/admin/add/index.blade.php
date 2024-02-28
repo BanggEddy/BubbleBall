@@ -35,7 +35,7 @@
                     <a class="nav-link" href="{{ route('admin.products.create') }}">Ajout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.products.index') }}">Suppression</a>
+                    <a class="nav-link" href="{{ route('admin.products.delete') }}">Suppression</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profiladmin">Profil</a>

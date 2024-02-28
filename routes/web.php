@@ -44,6 +44,9 @@ Route::get('/usersaccueil', function () {
 Route::get('/adminaccueil', function () {
     return view('admin.products.index');
 });
+Route::get('/', function () {
+    return view('admin.products.index');
+});
 /*USERS */
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/usersaccueil', [UserProductController::class, 'index']);
@@ -60,8 +63,8 @@ Route::get('/adminaccueil', [AdminProductController::class, 'index']);
 Route::get('/profiladmin', [AdminProfileController::class, 'show'])->name('profil.show');
 
 Route::prefix('admin')->group(function () {
-    Route::post('products/{id}/add-quantity', [AdminProductController::class, 'addQuantity'])->name('admin.products.add_quantity');
-    Route::post('products/{id}/remove-quantity', [AdminProductController::class, 'removeQuantity'])->name('admin.products.remove_quantity');
+    Route::put('products/{id}/add-quantity', [AdminProductController::class, 'addQuantity'])->name('admin.products.addQuantity');
+    Route::put('products/{id}/remove-quantity', [AdminProductController::class, 'removeQuantity'])->name('admin.products.removeQuantity');
 });
 /**ADD */
 Route::get('/admin/add', [AddProductController::class, 'create'])->name('admin.products.create');
@@ -69,4 +72,6 @@ Route::post('/admin/add', [AddProductController::class, 'store'])->name('admin.p
 
 Route::get('/adminaccueil', [AdminProductController::class, 'index'])->name('admin.products.index');
 
+/**SUPP */
+Route::get('/admin/delete', [DeleteProductController::class, 'index'])->name('admin.products.delete');
 Route::delete('/admin/delete/{id}', [DeleteProductController::class, 'destroy'])->name('admin.products.destroy');
