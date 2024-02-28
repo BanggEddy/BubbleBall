@@ -56,24 +56,29 @@
                                 <p class="card-text">Prix: {{ $product->prix }}</p>
                                 <p class="card-text">Quantité disponible: {{ $product->quantity }}</p>
 
-                                <form action="{{ route('orders.store') }}" method="POST">
+                                <form action="{{ route('admin.products.add_quantity', $product->id) }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <div class="form-group">
-                                        <label for="quantity">Quantité :</label>
-                                        <select class="form-control" id="quantity" name="quantity">
-                                            @for ($i = 1; $i <= $product->quantity; $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                    <div class="input-group">
+                                        <input type="number" name="quantity" class="form-control"
+                                            placeholder="Quantité à ajouter" min="1" required>
+                                        <button type="submit" class="btn btn-primary">Ajouter</button>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                                    <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
+
+                                <form action="{{ route('admin.products.remove_quantity', $product->id) }}" method="POST">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="number" name="quantity" class="form-control"
+                                            placeholder="Quantité à retirer" min="1" required>
+                                        <button type="submit" class="btn btn-danger">Retirer</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
 

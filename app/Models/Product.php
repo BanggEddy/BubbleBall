@@ -21,4 +21,18 @@ class Product extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function addQuantity($quantity)
+    {
+        $this->quantity += $quantity;
+        $this->save();
+    }
+
+    public function removeQuantity($quantity)
+    {
+        $this->quantity -= $quantity;
+        if ($this->quantity < 0) {
+            $this->quantity = 0;
+        }
+        $this->save();
+    }
 }

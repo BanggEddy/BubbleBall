@@ -57,3 +57,8 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 /*ADMIN */
 Route::get('/adminaccueil', [AdminProductController::class, 'index']);
 Route::get('/profiladmin', [AdminProfileController::class, 'show'])->name('profil.show');
+
+Route::prefix('admin')->group(function () {
+    Route::post('products/{id}/add-quantity', [AdminProductController::class, 'addQuantity'])->name('admin.products.add_quantity');
+    Route::post('products/{id}/remove-quantity', [AdminProductController::class, 'removeQuantity'])->name('admin.products.remove_quantity');
+});

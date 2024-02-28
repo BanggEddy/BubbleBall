@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /**
-     * Handle an authentication attempt.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|null
      */
@@ -25,7 +23,6 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // Vérification du rôle de l'utilisateur
             if (Auth::user()->role === 'ADMIN') {
                 return redirect()->intended('adminaccueil');
             } else {

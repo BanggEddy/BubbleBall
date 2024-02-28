@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
-    /**
-     * Display the authenticated user's profile.
-     *
+    /**     
      * @return \Illuminate\View\View
      */
     public function show()

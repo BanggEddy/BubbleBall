@@ -52,25 +52,35 @@
                 @foreach ($products as $product)
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img src="{{ $product->image }}" class="card-img-top" alt="Images">
+                            <img src="{{ $product->image }}" class="card-img-top" alt="Image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $product->name }}</h5>
                                 <p class="card-text">{{ $product->type }}</p>
                                 <p class="card-text">Prix: {{ $product->prix }}</p>
                                 <p class="card-text">Quantité disponible: {{ $product->quantity }}</p>
 
-                                <form action="{{ route('orders.store') }}" method="POST">
+                                <!-- Formulaire pour ajouter de la quantité -->
+                                <form action="{{ route('admin.products.addQuantity', $product->id) }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    @method('PUT')
                                     <div class="form-group">
-                                        <label for="quantity">Quantité :</label>
-                                        <select class="form-control" id="quantity" name="quantity">
-                                            @for ($i = 1; $i <= $product->quantity; $i++)
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        <label for="addQuantity">Ajouter de la quantité :</label>
+                                        <input type="number" class="form-control" id="addQuantity" name="quantity"
+                                            min="1" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Commander</button>
+                                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                                </form>
+
+                                <!-- Formulaire pour supprimer de la quantité -->
+                                <form action="{{ route('admin.products.removeQuantity', $product->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label for="removeQuantity">Supprimer de la quantité :</label>
+                                        <input type="number" class="form-control" id="removeQuantity" name="quantity"
+                                            min="1" max="{{ $product->quantity }}" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
                             </div>
                         </div>
@@ -78,6 +88,7 @@
                 @endforeach
             </div>
         </div>
+
 
 
 
