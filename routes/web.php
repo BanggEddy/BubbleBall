@@ -10,7 +10,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminProfileController;
-
+use App\Http\Controllers\Admin\AddProductController;
+use App\Http\Controllers\Admin\DeleteProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,3 +63,10 @@ Route::prefix('admin')->group(function () {
     Route::post('products/{id}/add-quantity', [AdminProductController::class, 'addQuantity'])->name('admin.products.add_quantity');
     Route::post('products/{id}/remove-quantity', [AdminProductController::class, 'removeQuantity'])->name('admin.products.remove_quantity');
 });
+/**ADD */
+Route::get('/admin/add', [AddProductController::class, 'create'])->name('admin.products.create');
+Route::post('/admin/add', [AddProductController::class, 'store'])->name('admin.products.store');
+
+Route::get('/adminaccueil', [AdminProductController::class, 'index'])->name('admin.products.index');
+
+Route::delete('/admin/delete/{id}', [DeleteProductController::class, 'destroy'])->name('admin.products.destroy');
