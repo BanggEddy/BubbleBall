@@ -26,7 +26,7 @@
                     <a class="nav-link" href="/adminaccueil">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ordersadmin">Panier</a>
+                    <a class="nav-link" href="{{ route('admin.orders.index') }}">Commandes</a>
                 </li>
             </ul>
             <ul class="navbar-nav">

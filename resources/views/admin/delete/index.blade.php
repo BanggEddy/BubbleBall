@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" width="2%">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,7 +26,7 @@
                     <a class="nav-link" href="/adminaccueil">Produits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/ordersadmin">Panier</a>
+                    <a class="nav-link" href="{{ route('admin.orders.index') }}">Commandes</a>
                 </li>
             </ul>
             <ul class="navbar-nav">

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AddProductController;
 use App\Http\Controllers\Admin\DeleteProductController;
+use App\Http\Controllers\Admin\AdminOrdersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,3 +76,10 @@ Route::get('/adminaccueil', [AdminProductController::class, 'index'])->name('adm
 /**SUPP */
 Route::get('/admin/delete', [DeleteProductController::class, 'index'])->name('admin.products.delete');
 Route::delete('/admin/delete/{id}', [DeleteProductController::class, 'destroy'])->name('admin.products.destroy');
+
+/**Order Admin */
+Route::prefix('admin')->group(function () {
+    Route::get('/orders', [AdminOrdersController::class, 'index'])->name('admin.orders.index');
+});
+
+Route::delete('/admin/orders/{order}', [AdminOrdersController::class, 'destroy'])->name('admin.orders.destroy');
