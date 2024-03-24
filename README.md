@@ -1,66 +1,54 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/2%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BubbleBall
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+BubbleBall est un projet Laravel qui fournit une plateforme pour gérer des produits, des commandes et des interactions utilisateur. Il inclut diverses fonctionnalités pour répondre aux besoins des utilisateurs et des administrateurs.
 
-## About Laravel
+## Fonctionnalités Principales
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Authentification
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Inscription Utilisateur:** Les utilisateurs peuvent s'inscrire sur la plateforme en fournissant des informations telles que leur nom, leur adresse e-mail et leur mot de passe. Le mot de passe respecte les conditions du CNIL.
+- **Connexion Utilisateur:** Les utilisateurs peuvent se connecter à leur compte en utilisant leur adresse e-mail et leur mot de passe. Le mot de passe est hashé dans la base de données pour des raisons de sécurité.
+- **Rôles Utilisateur:** Les utilisateurs sont affectés à des rôles pour déterminer leurs autorisations dans le système. Les rôles incluent 'USER' pour les utilisateurs normaux et 'ADMIN' pour les administrateurs.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Gestion des Produits
 
-## Learning Laravel
+- **Ajout de Produits:** Les administrateurs peuvent ajouter de nouveaux produits à la plateforme en fournissant des informations telles que le nom, le type, le prix, la quantité et l'image.
+- **Modification de Quantité:** Les administrateurs peuvent ajouter ou retirer des quantités de produits existants.
+- **Suppression de Produits:** Les administrateurs peuvent supprimer des produits de la plateforme s'ils ne sont plus nécessaires.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Panier Utilisateur
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Ajout au Panier:** Les utilisateurs peuvent ajouter des produits à leur panier en spécifiant la quantité souhaitée.
+- **Affichage du Panier:** Les utilisateurs peuvent voir les produits actuellement présents dans leur panier, ainsi que le prix total des produits.
+- **Suppression du Panier:** Les utilisateurs peuvent supprimer des produits de leur panier s'ils ne souhaitent plus les acheter.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Profil Utilisateur
 
-## Laravel Sponsors
+- **Affichage du Profil:** Les utilisateurs peuvent voir leur profil utilisateur, y compris des informations telles que leur nom, leur adresse e-mail et leur historique de commandes.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Gestion des Commandes Administrateur
 
-### Premium Partners
+- **Visualisation des Commandes:** Les administrateurs peuvent voir toutes les commandes passées par les utilisateurs sur la plateforme, ainsi que les détails de chaque commande.
+- **Suppression de Commandes:** Les administrateurs peuvent supprimer des commandes entières ou des produits spécifiques de chaque commande.
 
--   **[Vehikl](https://vehikl.com/)**
--   **[Tighten Co.](https://tighten.co)**
--   **[WebReinvent](https://webreinvent.com/)**
--   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--   **[64 Robots](https://64robots.com)**
--   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
--   **[Cyber-Duck](https://cyber-duck.co.uk)**
--   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
--   **[Jump24](https://jump24.co.uk)**
--   **[Redberry](https://redberry.international/laravel/)**
--   **[Active Logic](https://activelogic.com)**
--   **[byte5](https://byte5.de)**
--   **[OP.GG](https://op.gg)**
+### Traçabilité des Actions Administratives
 
-## Contributing
+- **Historique des Actions:** Chaque action effectuée par un administrateur est enregistrée dans la table HistoryAdmin, fournissant une traçabilité complète des modifications apportées au système.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Démarrage
 
-## Code of Conduct
+Pour configurer et exécuter le projet BubbleBall localement, suivez les instructions suivantes :
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Clonez le dépôt du projet sur votre machine locale.
+2. Installez les dépendances Composer en exécutant `composer install` dans le répertoire racine du projet.
+3. Configurez le fichier `.env` avec vos informations d'accès à la base de données et autres paramètres de configuration.
+4. Exécutez les migrations et les seeders de la base de données en utilisant les commandes `php artisan migrate` et `php artisan db:seed`.
+5. Lancez l'application en utilisant `php artisan serve` et accédez-y dans votre navigateur web.
 
-## Security Vulnerabilities
+## Contribution
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Les contributions au projet BubbleBall sont les bienvenues ! Si vous trouvez des problèmes ou avez des suggestions d'amélioration, veuillez ouvrir une issue ou soumettre une pull request sur le dépôt GitHub du projet.
 
-## License
+## Licence
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Le projet BubbleBall est un logiciel open-source sous licence MIT License. Vous êtes libre d'utiliser, de modifier et de distribuer le code pour des projets personnels et commerciaux.
